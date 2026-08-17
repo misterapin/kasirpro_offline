@@ -3,6 +3,14 @@ session_start();
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'owner') { header("Location: index.php"); exit; }
 include 'config/koneksi.php';
 
+// Ambil waktu mulai shift aktif milik user yang sedang login
+$shift = mysqli_fetch_assoc(mysqli_query($conn, "SELECT start_time FROM shifts WHERE user_id = " . $_SESSION['user_id'] . " AND status = 'active' ORDER BY id DESC LIMIT 1"));
+$shift_start = $shift['start_time'] ?? date('Y-m-d H:i:s');
+
+// Query laporan hanya sejak shift dimulai
+$sql = "SELECT * FROM transactions WHERE date >= '$shift_start' ORDER BY date DESC";
+$result = mysqli_query($conn, $sql);
+
 // Ambil tanggal filter dari input, default-nya adalah bulan berjalan
 $dari_tanggal = $_GET['dari'] ?? date('Y-m-01');
 $sampai_tanggal = $_GET['sampai'] ?? date('Y-m-d');

@@ -40,6 +40,7 @@ if (!isset($_SESSION['user_id'])) {
             <div class="d-flex align-items-center">
                 <span class="text-light me-3 small"><i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars($_SESSION['fullname']) ?> (<span class="text-uppercase text-warning fw-bold"><?= $_SESSION['role'] ?></span>)</span>
                 <a href="manajemen_user.php" class="btn btn-outline-light btn-sm rounded-pill px-3 me-2"><i class="fas fa-user-cog me-1"></i> Profil</a>
+                <a href="verifikasi_shift.php" class="btn btn-warning btn-sm rounded-pill px-3 me-2" title="Tutup Shift"> <i class="fas fa-cash-register me-1"></i> Close Shift</a>
                 <a href="logout.php" class="btn btn-danger btn-sm rounded-pill px-3"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
             </div>
         </div>
