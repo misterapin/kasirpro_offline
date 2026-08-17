@@ -36,23 +36,29 @@ include 'includes/header.php';
 
         <div class="card border-0 bg-light p-4 rounded-4 mb-4">
             <h6 class="fw-bold mb-3">Tambah Produk Baru</h6>
-            <form action="" method="POST" class="row g-3">
-                <div class="col-md-2"><input type="text" name="barcode" class="form-control rounded-pill" placeholder="Barcode" autofocus></div>
-                <div class="col-md-3"><input type="text" name="name" class="form-control rounded-pill" placeholder="Nama Barang" required></div>
-                <div class="col-md-2">
-                    <select name="category_id" class="form-select rounded-pill">
-                        <option value="">Pilih Kategori</option>
-                        <?php $cats = mysqli_query($conn, "SELECT * FROM categories");
-                        while($c = mysqli_fetch_assoc($cats)): ?>
-                        <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['name']) ?></option>
-                        <?php endwhile; ?>
-                    </select>
-                </div>
-                <div class="col-md-2"><input type="number" name="price" class="form-control rounded-pill" placeholder="Harga" required></div>
-                <div class="col-md-1"><input type="number" name="stock" class="form-control rounded-pill" placeholder="Stok" required></div>
-                <div class="col-md-2"><button type="submit" name="tambah" class="btn btn-success rounded-pill w-100 fw-bold">Simpan</button></div>
-            </form>
-        </div>
+<!-- Bagian Form Tambah Produk Baru -->
+<form action="" method="POST" class="row g-3">
+    <div class="col-md-2"><input type="text" name="barcode" class="form-control rounded-pill" placeholder="Barcode" autofocus></div>
+    <div class="col-md-2"><input type="text" name="name" class="form-control rounded-pill" placeholder="Nama Barang" required></div>
+    <div class="col-md-2">
+        <select name="category_id" class="form-select rounded-pill">
+            <option value="">Pilih Kategori</option>
+            <?php $cats = mysqli_query($conn, "SELECT * FROM categories");
+            while($c = mysqli_fetch_assoc($cats)): ?>
+            <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['name']) ?></option>
+            <?php endwhile; ?>
+        </select>
+    </div>
+    <div class="col-md-2"><input type="number" name="price" class="form-control rounded-pill" placeholder="Harga" required></div>
+    <div class="col-md-2"><input type="number" name="stock" class="form-control rounded-pill" placeholder="Stok" required></div>
+    
+    <!-- Tombol Simpan diganti dengan Icon -->
+    <div class="col-md-2">
+        <button type="submit" name="tambah" class="btn btn-success rounded-pill w-50 fw-bold" title="Simpan Produk">
+            <i class="fas fa-save"></i>
+        </button>
+    </div>
+</form>        </div>
 
         <div class="table-responsive">
             <table class="table table-hover align-middle">
